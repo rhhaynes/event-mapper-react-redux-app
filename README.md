@@ -1,27 +1,30 @@
 # event-mapper-react-redux-app
 
-Web application with a React-Redux frontend and Rails API backend for viewing earthquake,
-hurricane, and volcano data. The geolocations of all events are displayed on Google Maps.
+React-Redux application with a Rails API backend for viewing earthquake, hurricane,
+and volcano data. The geolocations of all events are displayed using Google Maps.
 
 ## Data Sources
 
-**Earthquakes**
+**Earthquakes**  
 https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
 
-**Hurricanes**
+**Hurricanes**  
 https://www.wunderground.com/hurricane/hurrarchive.asp
 
-**Volcanoes**
+**Volcanoes**  
 http://volcano.oregonstate.edu/oldroot/volcanoes/alpha.html
 
 ## Usage
 
 To use this application, clone the repository and
 
-(1) run `rails db:migrate db:seed`
-> Creates the schema and seeds the database with 150+ hurricanes and 1500+ volcanoes.
+(1) run `npm --prefix ./client/ install ./client/`
+> Installs all dependencies for the client application.
 
-(2) run `rake start`
+(2) run `rails db:migrate db:seed`
+> Creates the schema and seeds the API database with 150+ hurricanes and 1500+ volcanoes.
+
+(3) run `rake start`
 > Boots the client application and API server via Foreman.
 
 ## Contributing

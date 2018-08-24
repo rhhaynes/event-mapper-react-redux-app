@@ -1,7 +1,12 @@
 # event-mapper-react-redux-app
 
-React-Redux application with a Rails API backend for viewing earthquake, hurricane,
-and volcano data. The geolocations of all events are displayed using Google Maps.
+React-Redux application with a Rails API backend for visualizing weather and geological
+databases. Based on user requests, the client-side application fetches geolocation data
+from the API server and overlays it on Google Maps.
+
+At present users can view Atlantic hurricane paths from 1995-2017 based on Weather Underground,
+the entire Volcano World database maintained by Oregon State University, and realtime earthquake
+data made available by the United States Geological Survey.
 
 ## Data Sources
 

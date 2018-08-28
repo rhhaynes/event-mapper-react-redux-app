@@ -113,12 +113,10 @@ class MapContainer extends Component {
     );
 
     return (
-      <div>
-        <GoogleMapWithMarker
-          containerElement={<div style={{ height: `575px`, width: '1000px' }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
-      </div>
+      <GoogleMapWithMarker
+        containerElement={<div style={{ height: `575px`, width: '1000px' }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
     );
   }
 };

@@ -14,14 +14,21 @@ class HurricanesByYear extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.checked.length) {
+      this.setState({
+        checked: Array.from( {length: 2018-1995}, (v,i) => i+1995 ).map( year => ({[year]: false}) )
+      });
+    }
+  }
+
   handleOnChange(event) {
     const yearStr = event.target.name;
     const idx     = this.state.checked.findIndex(obj => Object.keys(obj)[0] === yearStr);
     const checked = this.state.checked[idx][yearStr];
     ( checked ? this.props.removeHurricanes(yearStr) : this.props.addHurricanes(yearStr) );
     this.setState({
-      ...this.state,
-      checked: [...this.state.checked.slice(0, idx), {[yearStr]: !checked}, ...this.state.checked.slice(idx+1)],
+      checked: [...this.state.checked.slice(0, idx), {[yearStr]: !checked}, ...this.state.checked.slice(idx+1)]
     });
   }
 

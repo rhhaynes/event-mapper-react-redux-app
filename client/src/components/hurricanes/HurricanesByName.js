@@ -10,7 +10,7 @@ class HurricanesByName extends Component {
         let yearStr = Object.keys(obj)[0];
         let hurrArr = obj[yearStr];
         return (
-          <div key={yearStr} className="App-small-sub">
+          <div key={yearStr} className="App-small-left">
             <span style={{fontWeight:'bold'}}>
               { yearStr }:
             </span>

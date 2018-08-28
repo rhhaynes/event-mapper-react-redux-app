@@ -25,6 +25,20 @@ class EarthquakesByDate extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.checked.length) {
+      this.setState({
+        ...this.state,
+        checked: [
+          {'all_hour':  false},
+          {'4.5_day':   false}, {'significant_day':   false},
+          {'4.5_week':  false}, {'significant_week':  false},
+          {'4.5_month': false}, {'significant_month': false}
+        ]
+      });
+    }
+  }
+
   handleOnChange(event) {
     const queryStr = event.target.name;
     const idx     = this.state.checked.findIndex(obj => Object.keys(obj)[0] === queryStr);
@@ -32,7 +46,7 @@ class EarthquakesByDate extends Component {
     ( checked ? this.props.removeEarthquakes(queryStr) : this.props.addEarthquakes(queryStr) );
     this.setState({
       ...this.state,
-      checked: [...this.state.checked.slice(0, idx), {[queryStr]: !checked}, ...this.state.checked.slice(idx+1)],
+      checked: [...this.state.checked.slice(0, idx), {[queryStr]: !checked}, ...this.state.checked.slice(idx+1)]
     });
   }
 

@@ -14,14 +14,21 @@ class VolcanoesByFirstLetter extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.checked.length) {
+      this.setState({
+        checked: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map( char => ({[char]: false}) )
+      });
+    }
+  }
+
   handleOnChange(event) {
     const charStr = event.target.name;
     const idx     = this.state.checked.findIndex(obj => Object.keys(obj)[0] === charStr);
     const checked = this.state.checked[idx][charStr];
     ( checked ? this.props.removeVolcanoes(charStr) : this.props.addVolcanoes(charStr) );
     this.setState({
-      ...this.state,
-      checked: [...this.state.checked.slice(0, idx), {[charStr]: !checked}, ...this.state.checked.slice(idx+1)],
+      checked: [...this.state.checked.slice(0, idx), {[charStr]: !checked}, ...this.state.checked.slice(idx+1)]
     });
   }
 

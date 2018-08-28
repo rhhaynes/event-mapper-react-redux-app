@@ -40,7 +40,7 @@ a.activeRoute:hover {
   display: block;
   color: #222;
   margin: 0;
-  padding: 0 0 25px;
+  padding: 25px 0;
   min-width: 100%;
   max-width: 100%;
   width: 100%;
@@ -75,13 +75,31 @@ a.activeRoute:hover {
 .App-medium {
   font-size: medium;
   margin: 0 auto;
-  padding: 25px 0;
+  padding: 0;
 }
 .App-medium-sub {
+  border: 1px solid #777;
+  border-top: none;
+  font-size: medium;
+  margin: 0 auto 25px;
+  padding: 0;
+  height: 30px;
+  width: 333px;
+}
+.App-medium-subtext {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #bbb;
+  color: #f00;
   font-size: medium;
   margin: 0 auto;
-  padding: 0 0 25px;
-  text-align: left;
+  padding: 5px;
+  width: 321px;
+  text-align: center;
+}
+.App-medium-subtext:hover {
+  background-color: #ebebeb;
+  border: 1px solid #aaa;
 }
 
 .App-small {
@@ -89,7 +107,8 @@ a.activeRoute:hover {
   margin: 0 auto;
   padding: 25px 0;
 }
-.App-small-sub {
+
+.App-small-left {
   font-size: small;
   margin: 0 auto;
   padding: 0 0 25px;

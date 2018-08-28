@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ClearMapContainer from './ClearMapContainer';
 import { addEarthquakes, removeEarthquakes } from '../actions/earthquakeActions';
 import EarthquakesByDate from '../components/earthquakes/EarthquakesByDate';
 
@@ -13,6 +14,8 @@ class EarthquakesContainer extends Component {
           addEarthquakes={this.props.addEarthquakes}
           removeEarthquakes={this.props.removeEarthquakes}
         />
+
+        <ClearMapContainer />
 
       </div>
     );

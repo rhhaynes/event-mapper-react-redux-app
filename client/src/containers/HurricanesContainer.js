@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ClearMapContainer from './ClearMapContainer';
 import { addHurricanes, removeHurricanes, toggleHurricanes } from '../actions/hurricaneActions';
 import HurricanesByYear from '../components/hurricanes/HurricanesByYear';
 import HurricanesByName from '../components/hurricanes/HurricanesByName';
@@ -14,6 +15,8 @@ class HurricanesContainer extends Component {
           addHurricanes={this.props.addHurricanes}
           removeHurricanes={this.props.removeHurricanes}
         />
+
+        <ClearMapContainer />
 
         <HurricanesByName
           hurricanes={this.props.hurricanes}

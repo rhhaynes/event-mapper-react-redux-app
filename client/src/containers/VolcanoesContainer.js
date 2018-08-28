@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ClearMapContainer from './ClearMapContainer';
 import { addVolcanoes, removeVolcanoes } from '../actions/volcanoActions';
 import VolcanoesByFirstLetter from '../components/volcanoes/VolcanoesByFirstLetter';
 
@@ -13,6 +14,8 @@ class VolcanoesContainer extends Component {
           addVolcanoes={this.props.addVolcanoes}
           removeVolcanoes={this.props.removeVolcanoes}
         />
+
+        <ClearMapContainer />
 
       </div>
     );

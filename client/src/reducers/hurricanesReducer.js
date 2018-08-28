@@ -39,6 +39,10 @@ export default (state = [], action) => {
         ...state.slice(idxYear+1)];
     }
 
+    case 'RESET': {
+      return [];
+    }
+
     default: {
       return state;
     }

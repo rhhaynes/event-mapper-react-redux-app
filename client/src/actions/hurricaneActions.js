@@ -27,6 +27,13 @@ export function removeHurricanes(yearStr) {
   };
 }
 
+export function toggleAllHurricanes(yearStr) {
+  return {
+    type: 'TOGGLE_ALL_HURRICANES',
+    year: yearStr
+  }
+}
+
 export function toggleHurricanes(yearStr, nameStr) {
   return {
     type: 'TOGGLE_HURRICANES',

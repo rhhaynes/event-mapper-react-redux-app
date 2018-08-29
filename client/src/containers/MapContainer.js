@@ -38,7 +38,7 @@ class MapContainer extends Component {
           ? null
           : this.props.earthquakes.map( obj => {
             let queryStr = Object.keys(obj)[0];
-            let eqArr    = obj[queryStr];
+            let eqArr = obj[queryStr];
             return (
               eqArr.map( (eq, idx) => {
                 let idStr = Object.keys(eq)[0];
@@ -64,11 +64,11 @@ class MapContainer extends Component {
             let hurrArr = obj[yearStr];
             return (
               hurrArr.map( (hurr, idx) => {
-                let nameStr  = Object.keys(hurr)[0];
-                let status   = hurr[nameStr].status;
+                let nameStr = Object.keys(hurr)[0];
+                let status = hurr[nameStr].status;
                 let category = hurr[nameStr].category;
-                let deaths   = hurr[nameStr].deaths;
-                let latlng   = (status ? hurr[nameStr].latlng : []);
+                let deaths = hurr[nameStr].deaths;
+                let latlng = (status ? hurr[nameStr].latlng : []);
                 return (
                   <HurricanePolyline
                     key={'poly'+yearStr+nameStr}

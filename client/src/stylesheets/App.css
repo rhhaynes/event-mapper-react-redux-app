@@ -114,6 +114,13 @@ a.activeRoute:hover {
   padding: 0 0 25px;
   text-align: left;
 }
+span.toggleAllHurricanes {
+  font-weight: bold;
+}
+span.toggleAllHurricanes:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 .App-info-window {
   font-size: small;

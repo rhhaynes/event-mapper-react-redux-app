@@ -11,9 +11,10 @@ class HurricanesByName extends Component {
         let hurrArr = obj[yearStr];
         return (
           <div key={yearStr} className="App-small-left">
-            <span style={{fontWeight:'bold'}}>
-              { yearStr }:
-            </span>
+            <span
+              className="toggleAllHurricanes"
+              onClick={event => this.props.toggleAllHurricanes(yearStr)}
+            >{ yearStr }:</span>
             { hurrArr.map( hurr => {
               let nameStr = Object.keys(hurr)[0];
               let checked = hurr[nameStr].status;

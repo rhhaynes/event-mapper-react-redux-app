@@ -5,8 +5,8 @@ export default (state = [], action) => {
     case 'ADD_HURRICANES': {
       return (
         [...state, action.payload].sort( function(aObj, bObj){
-          let a = Object.keys(aObj)[0];
-          let b = Object.keys(bObj)[0];
+          const a = Object.keys(aObj)[0];
+          const b = Object.keys(bObj)[0];
           if (a < b){ return -1; }
           if (a > b){ return  1; }
           return 0;
@@ -17,6 +17,27 @@ export default (state = [], action) => {
     case 'REMOVE_HURRICANES': {
       const idx = state.findIndex(obj => Object.keys(obj)[0] === action.year);
       return [...state.slice(0, idx), ...state.slice(idx+1)];
+    }
+
+    case 'TOGGLE_ALL_HURRICANES': {
+      const idxYear = state.findIndex(obj => Object.keys(obj)[0] === action.year);
+      const status = !state[idxYear][action.year][0][Object.keys(state[idxYear][action.year][0])[0]].status;
+      return [
+        ...state.slice(0, idxYear),
+        {
+          [action.year] : state[idxYear][action.year].map( (obj, idxName) => {
+            const hurrName = Object.keys(obj)[0];
+            return {
+              [hurrName] : {
+                status: status,
+                category: state[idxYear][action.year][idxName][hurrName].category,
+                deaths: state[idxYear][action.year][idxName][hurrName].deaths,
+                latlng: state[idxYear][action.year][idxName][hurrName].latlng
+              }
+            };
+          })
+        },
+        ...state.slice(idxYear+1)];
     }
 
     case 'TOGGLE_HURRICANES': {

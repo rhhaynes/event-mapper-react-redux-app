@@ -1,0 +1,49 @@
+.locations-form-input {
+  box-sizing: border-box;
+  border: 1px solid #777;
+  border-radius: 3.5px;
+  box-shadow: 0 0 1px #bbb;
+  font-size: medium;
+  height: 30px;
+  width: 333px;
+  margin-bottom: 3px;
+  padding-left: 4px;
+}
+.locations-form-input.latlng-size {
+  width: 165px;
+}
+.locations-form-input.description-size {
+  height: 66px;
+  padding-top: 4px;
+}
+
+.locations-form-submit {
+  background-color: rgb(40, 167, 69);
+  background-image: linear-gradient(-180deg, rgb(52,208,88) 0%, rgb(40,167,69) 90%);
+  box-sizing: border-box;
+  display: block;
+  border: 1px solid rgb(40, 167, 69);
+  border-radius: 3.5px;
+  cursor: default;
+  color: rgb(255, 255, 255);
+  font-size: medium;
+  font-weight: normal;
+  margin: 0 auto 25px;
+  padding: 4px;
+  text-align: center;
+  text-decoration: none;
+  min-height: 30px;
+  height: 30px;
+  width: 333px;
+}
+.locations-form-submit:focus {
+  outline-color: rgb(40, 167, 69);
+}
+.locations-form-submit:hover {
+  background-color: rgb(36, 148, 61);
+  background-image: linear-gradient(-180deg, rgb(46,185,78) 0%, rgb(36,148,61) 90%);
+}
+.locations-form-submit:active {
+  background-color: rgb(27, 111, 46);
+  background-image: linear-gradient(-180deg, rgb(35,139,59) 0%, rgb(27,111,46) 90%);
+}

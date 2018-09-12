@@ -8,7 +8,7 @@ class Hurricane extends Component {
         <input
           type="checkbox"
           checked={this.props.checked}
-          onChange={event => this.props.toggleHurricanes(this.props.year, this.props.name)}
+          onChange={() => this.props.toggleHurricanes(this.props.year, this.props.name)}
         />
         { this.props.name }
       </label>

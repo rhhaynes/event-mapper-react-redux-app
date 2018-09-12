@@ -1,122 +1,72 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withGoogleMap, GoogleMap } from 'react-google-maps';
-import EarthquakeMarker from '../components/map/EarthquakeMarker';
-import HurricanePolyline from '../components/map/HurricanePolyline';
-import VolcanoMarker from '../components/map/VolcanoMarker';
+import { createLocation } from '../actions/locationActions';
+import LocationsForm from '../components/locations/LocationsForm';
+import Map from '../components/map/Map';
 
 class MapContainer extends Component {
   constructor() {
     super();
-    this.state = {
-      zoom: 2,
-      center: { lat: 26, lng: 0 },
-      options: { mapTypeId: 'terrain', minZoom: 2, maxZoom: 20, streetViewControl: false }
-    };
+    this.state = { form: { name: '', lat: '', lng: '', description: '' }};
   }
 
-  componentWillReceiveProps() {
-    const mapProps = this.mapInstance.context['__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED'];
-    this.setState({
-      zoom: mapProps.zoom,
-      center: { lat: mapProps.center.lat(), lng: mapProps.center.lng() },
-      options: { mapTypeId: mapProps.mapTypeId, minZoom: mapProps.minZoom, maxZoom: mapProps.maxZoom, streetViewControl: false }
+  clearForm() {
+    return { form: { name: '', lat: '', lng: '', description: '' }};
+  }
+
+  handleFormChange(event) {
+    const form = Object.assign(
+      {}, this.state.form, { [event.target.name]: event.target.value }
+    );
+    this.setState({ form: form });
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+    this.props.createLocation({
+      location: {
+        name: this.state.form.name,
+        description: this.state.form.description,
+        geolocation_attributes: { lat: this.state.form.lat, lng: this.state.form.lng }
+      }
     });
+    this.setState( this.clearForm() );
+  }
+
+  handleMapClick(event) {
+    const form = Object.assign(
+      {}, this.state.form, { lat: event.latLng.lat().toString(10), lng: event.latLng.lng().toString(10) }
+    );
+    this.setState({ form: form });
+  }
+
+  handleMarkerClick() {
+    this.setState( this.clearForm() );
   }
 
   render() {
-    const GoogleMapWithMarker = withGoogleMap( props =>
-      <GoogleMap
-        ref={el => this.mapInstance = el}
-        defaultZoom={this.state.zoom}
-        defaultCenter={this.state.center}
-        options={this.state.options}
-      >
-
-        {
-          ( !Array.isArray(this.props.earthquakes) || !this.props.earthquakes.length )
-          ? null
-          : this.props.earthquakes.map( obj => {
-            let queryStr = Object.keys(obj)[0];
-            let eqArr = obj[queryStr];
-            return (
-              eqArr.map( (eq, idx) => {
-                let idStr = Object.keys(eq)[0];
-                return (
-                  <EarthquakeMarker
-                    key={'mark'+idStr}
-                    location={eq[idStr].location}
-                    magnitude={eq[idStr].magnitude}
-                    latlng={eq[idStr].latlng}
-                    depth_km={eq[idStr].depth_km}
-                  />
-                );
-              })
-            );
-          })
-        }
-
-        {
-          ( !Array.isArray(this.props.hurricanes) || !this.props.hurricanes.length )
-          ? null
-          : this.props.hurricanes.map( obj => {
-            let yearStr = Object.keys(obj)[0];
-            let hurrArr = obj[yearStr];
-            return (
-              hurrArr.map( (hurr, idx) => {
-                let nameStr = Object.keys(hurr)[0];
-                let status = hurr[nameStr].status;
-                let category = hurr[nameStr].category;
-                let deaths = hurr[nameStr].deaths;
-                let latlng = (status ? hurr[nameStr].latlng : []);
-                return (
-                  <HurricanePolyline
-                    key={'poly'+yearStr+nameStr}
-                    year={yearStr}
-                    name={nameStr}
-                    category={category}
-                    deaths={deaths}
-                    latlng={latlng}
-                    index={idx}
-                  />
-                );
-              })
-            );
-          })
-        }
-
-        {
-          ( !Array.isArray(this.props.volcanoes) || !this.props.volcanoes.length )
-          ? null
-          : this.props.volcanoes.map( obj => {
-            let charStr = Object.keys(obj)[0];
-            let volArr = obj[charStr];
-            return (
-              volArr.map( (vol, idx) => {
-                let nameStr = Object.keys(vol)[0];
-                return (
-                  <VolcanoMarker
-                    key={'mark'+nameStr+`${idx}`}
-                    name={nameStr}
-                    location={vol[nameStr].location}
-                    type={vol[nameStr].type}
-                    latlng={vol[nameStr].latlng}
-                    elev_m={vol[nameStr].elev_m}
-                  />
-                );
-              })
-            );
-          })
-        }
-
-      </GoogleMap>
-    );
-
     return (
-      <GoogleMapWithMarker
-        containerElement={<div style={{ height: `575px`, width: '1000px' }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
+      <div>
+
+        <LocationsForm
+          form={this.state.form}
+          handleFormChange={event => this.handleFormChange(event)}
+          handleFormSubmit={event => this.handleFormSubmit(event)}
+        />
+
+        <Map
+          containerElement={<div style={{ height: `575px`, width: '1000px' }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          earthquakes={this.props.earthquakes}
+          hurricanes={this.props.hurricanes}
+          locations={this.props.locations}
+          volcanoes={this.props.volcanoes}
+          form={this.state.form}
+          handleMapClick={event => this.handleMapClick(event)}
+          handleMarkerClick={() => this.handleMarkerClick()}
+        />
+
+      </div>
     );
   }
 };
@@ -125,6 +75,8 @@ export default connect(
   state => ({
     earthquakes: state.earthquakes,
     hurricanes: state.hurricanes,
+    locations: state.locations,
     volcanoes: state.volcanoes
-  })
+  }),
+  { createLocation }
 )(MapContainer);

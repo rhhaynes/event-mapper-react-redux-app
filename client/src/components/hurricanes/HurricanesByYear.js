@@ -5,7 +5,7 @@ class HurricanesByYear extends Component {
     super(props);
 
     this.state = {
-      checked: Array.from( {length: 2018-1995}, (v,i) => i+1995 ).map( year => ({[year]: false}) )
+      checked: Array.from( {length: 2019-1995}, (v,i) => i+1995 ).map( year => ({[year]: false}) )
     };
 
     this.props.checked.forEach( yearStr => {
@@ -17,7 +17,7 @@ class HurricanesByYear extends Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.checked.length) {
       this.setState({
-        checked: Array.from( {length: 2018-1995}, (v,i) => i+1995 ).map( year => ({[year]: false}) )
+        checked: Array.from( {length: 2019-1995}, (v,i) => i+1995 ).map( year => ({[year]: false}) )
       });
     }
   }

@@ -14,7 +14,6 @@ class VolcanoesContainer extends Component {
           addVolcanoes={this.props.addVolcanoes}
           removeVolcanoes={this.props.removeVolcanoes}
         />
-
         <ClearMapContainer />
 
       </div>

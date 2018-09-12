@@ -14,7 +14,6 @@ class EarthquakesContainer extends Component {
           addEarthquakes={this.props.addEarthquakes}
           removeEarthquakes={this.props.removeEarthquakes}
         />
-
         <ClearMapContainer />
 
       </div>

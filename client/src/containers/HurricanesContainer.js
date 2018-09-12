@@ -15,7 +15,6 @@ class HurricanesContainer extends Component {
           addHurricanes={this.props.addHurricanes}
           removeHurricanes={this.props.removeHurricanes}
         />
-
         <ClearMapContainer />
 
         <HurricanesByName

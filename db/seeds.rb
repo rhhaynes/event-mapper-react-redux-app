@@ -5,7 +5,7 @@ if Hurricane.all.empty?
   puts "-- create hurricanes (1995-2017)"
   t_start = Time.now
 
-	[*1995..2017].each do |year|
+	[*1995..2018].each do |year|
 		print "\r   -> %d" % year
 		require_relative "./seeds/hurricanes/hurricanes#{year}.rb"
 

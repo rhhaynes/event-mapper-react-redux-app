@@ -8,6 +8,7 @@ import MapContainer from './containers/MapContainer';
 import NavBar from './components/NavBar';
 import './stylesheets/App.css';
 import './stylesheets/dropdown.css';
+import './stylesheets/form.css';
 
 class App extends Component {
   render() {

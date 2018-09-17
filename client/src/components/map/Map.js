@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import EarthquakeMarker from './EarthquakeMarker';
 import HurricanePolyline from './HurricanePolyline';
@@ -56,6 +56,7 @@ const Map = withGoogleMap( props => (
             let category = hurr[nameStr].category;
             let deaths = hurr[nameStr].deaths;
             let latlng = (status ? hurr[nameStr].latlng : []);
+            let spaghettiModels = (status ? hurr[nameStr].spaghettiModels : []);
             return (
               <HurricanePolyline
                 key={'polyHurricane-'+yearStr+nameStr}
@@ -64,6 +65,7 @@ const Map = withGoogleMap( props => (
                 category={category}
                 deaths={deaths}
                 latlng={latlng}
+                spaghettiModels={spaghettiModels}
                 index={idx}
               />
             );

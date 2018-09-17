@@ -2,7 +2,7 @@
 
 if Hurricane.all.empty?
   puts "== seeds.rb Hurricane: seeding ".ljust(79, "=")
-  puts "-- create hurricanes (1995-2017)"
+  puts "-- create hurricanes (1995-2018)"
   t_start = Time.now
 
 	[*1995..2018].each do |year|
@@ -26,6 +26,32 @@ if Hurricane.all.empty?
 
 	puts "\r   -> %.4fs" % (Time.now - t_start)
   puts "== seeds.rb Hurricane: seeded #{"(%.4fs)" % (Time.now - t_start)} ".ljust(79, "=")
+  puts
+end
+
+# == Seed Hurricane Spaghetti Models ========================================= #
+
+if SpaghettiModel.all.empty?
+  puts "== seeds.rb SpaghettiModel: seeding ".ljust(79, "=")
+  puts "-- create spaghetti models (2008-2018)"
+  t_start = Time.now
+
+	[*2008..2018].each do |year|
+		print "\r   -> %d" % year
+		require_relative "./seeds/spaghetti_models/spaghetti_models_#{year}.rb"
+
+    Object.const_get("SpaghettiModels#{year}").spaghetti_models.each do |h|
+      hurricane = Hurricane.find_by(:year => year, :name => h.keys.first)
+      if !!hurricane
+        h.values.first.each do |sm|
+          hurricane.spaghetti_models.create(:name => sm[:name]).geolocations.create(sm[:latlng])
+        end
+      end
+		end
+	end
+
+	puts "\r   -> %.4fs" % (Time.now - t_start)
+  puts "== seeds.rb SpaghettiModel: seeded #{"(%.4fs)" % (Time.now - t_start)} ".ljust(79, "=")
   puts
 end
 

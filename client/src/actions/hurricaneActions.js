@@ -10,7 +10,8 @@ export function addHurricanes(yearStr) {
             status: feature.status,
             category: feature.category,
             deaths: feature.deaths,
-            latlng: feature.geolocations
+            latlng: feature.geolocations,
+            spaghettiModels: feature.spaghetti_models
           }
         }))
       };

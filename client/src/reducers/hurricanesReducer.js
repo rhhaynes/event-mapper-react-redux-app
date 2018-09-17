@@ -32,7 +32,8 @@ export default (state = [], action) => {
                 status: status,
                 category: state[idxYear][action.year][idxName][hurrName].category,
                 deaths: state[idxYear][action.year][idxName][hurrName].deaths,
-                latlng: state[idxYear][action.year][idxName][hurrName].latlng
+                latlng: state[idxYear][action.year][idxName][hurrName].latlng,
+                spaghettiModels: state[idxYear][action.year][idxName][hurrName].spaghettiModels
               }
             };
           })
@@ -53,7 +54,8 @@ export default (state = [], action) => {
                     status: !state[idxYear][action.year][idxName][action.name].status,
                     category: state[idxYear][action.year][idxName][action.name].category,
                     deaths: state[idxYear][action.year][idxName][action.name].deaths,
-                    latlng: state[idxYear][action.year][idxName][action.name].latlng}
+                    latlng: state[idxYear][action.year][idxName][action.name].latlng,
+                    spaghettiModels: state[idxYear][action.year][idxName][action.name].spaghettiModels}
                 },
               ...state[idxYear][action.year].slice(idxName+1)]
           },

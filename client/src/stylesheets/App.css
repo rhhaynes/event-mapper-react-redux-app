@@ -118,8 +118,9 @@ span.toggleAllHurricanes {
   font-weight: bold;
 }
 span.toggleAllHurricanes:hover {
+  color: #2B92FF;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .App-info-window {

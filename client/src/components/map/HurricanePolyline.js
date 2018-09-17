@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Polyline, InfoWindow } from 'react-google-maps';
 import { PolylineColors } from './PolylineColors';
+import SpaghettiModelPolyline from './SpaghettiModelPolyline';
 
 class HurricanePolyline extends Component {
   constructor() {
@@ -21,6 +22,15 @@ class HurricanePolyline extends Component {
   render() {
     return (
       <div>
+
+        { !!this.props.spaghettiModels.length &&
+          this.props.spaghettiModels.map( sm => (
+            <SpaghettiModelPolyline
+              key={sm.name}
+              latlng={sm.geolocations}
+            />
+          ))
+        }
 
         <Polyline
           geodesic={true}

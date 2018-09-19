@@ -5,11 +5,13 @@ import { resetMap } from '../actions/mapActions';
 class ClearMapContainer extends Component {
   render() {
     return (
-      <div className="App-medium-sub" onClick={() => this.props.resetMap()}>
-        <div className="App-medium-subtext">
-          Clear map
-        </div>
-      </div>
+      <button
+        className="clear-map-btn"
+        onClick={() => {
+          this.props.clearForm();
+          this.props.resetMap();
+        }}
+      >Clear Map</button>
     );
   }
 }

@@ -34,7 +34,7 @@ class App extends Component {
 
           <footer className="App-footer">
             <div className="App-container">
-              <div className="App-small">
+              <div className="App-footer-small">
                 &copy; 2018 EventMapper
               </div>
             </div>

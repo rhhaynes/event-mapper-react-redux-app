@@ -1,32 +1,36 @@
 div.drop-down {
   border: 1px solid #777;
-  height: 150px;
-  width: 333px;
+  border-radius: 3.5px;
+  box-shadow: 0 0 1px #bbb;
+  font-size: medium;
+  height: 261px;
   margin: 0 auto;
   padding: 0;
   overflow: auto;
-  text-align: center;
+  text-align: left;
+  width: 333px;
   -webkit-transition: height 0.3s ease;
           transition: height 0.3s ease;
 }
 div.drop-down.closed {
+  border-bottom: none;
   height: 30px;
   overflow: hidden;
 }
 
 div#selection-button {
-  position: absolute;
   background-color: #fff;
-  border: 1px solid #bbb;
-  width: 321px;
+  border-bottom: 1px solid #777;
+  border-radius: 3.5px;
   margin: 0 auto;
-  padding: 5px;
+  padding: 6px;
+  position: absolute;
   text-align: center;
+  width: 321px;
   z-index: 1000;
 }
 div#selection-button:hover {
   background-color: #ebebeb;
-  border: 1px solid #aaa;
 }
 
 span.arrow-container {

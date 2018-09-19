@@ -1,3 +1,46 @@
+.form-title {
+  box-sizing: border-box;
+  font-size: large;
+  font-weight: bold;
+  margin: 0 auto 6px;
+  padding: 0;
+}
+
+/* == Clear Map Button ====================================================== */
+
+.clear-map-btn {
+  background-color: rgb(167, 40, 69);
+  background-image: linear-gradient(-180deg, rgb(208,52,88) 0%, rgb(167,40,69) 90%);
+  box-sizing: border-box;
+  display: block;
+  border: 1px solid rgb(167, 40, 69);
+  border-radius: 3.5px;
+  cursor: default;
+  color: rgb(255, 255, 255);
+  font-size: medium;
+  font-weight: normal;
+  margin: 6px auto 0;
+  padding: 4px;
+  text-align: center;
+  text-decoration: none;
+  min-height: 30px;
+  height: 30px;
+  width: 333px;
+}
+.clear-map-btn:focus {
+  outline-color: rgb(167, 40, 69);
+}
+.clear-map-btn:hover {
+  background-color: rgb(148, 36, 61);
+  background-image: linear-gradient(-180deg, rgb(185,46,78) 0%, rgb(148,36,61) 90%);
+}
+.clear-map-btn:active {
+  background-color: rgb(111, 27, 46);
+  background-image: linear-gradient(-180deg, rgb(139,35,59) 0%, rgb(111,27,46) 90%);
+}
+
+/* == New Location Marker =================================================== */
+
 .locations-form-input {
   box-sizing: border-box;
   border: 1px solid #777;
@@ -28,7 +71,7 @@
   color: rgb(255, 255, 255);
   font-size: medium;
   font-weight: normal;
-  margin: 0 auto 25px;
+  margin: 0 auto;
   padding: 4px;
   text-align: center;
   text-decoration: none;

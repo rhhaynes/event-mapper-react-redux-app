@@ -27,7 +27,7 @@ class LocationMarker extends Component {
       >
         { this.state.showInfoWindow &&
           <InfoWindow>
-            <div className="App-info-window">
+            <div className="map-info-window">
               <span style={{fontWeight:'bold'}}>{this.props.name}</span><br />
               {this.props.description}
             </div>

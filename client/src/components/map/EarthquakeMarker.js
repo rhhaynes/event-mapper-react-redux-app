@@ -27,7 +27,7 @@ class EarthquakeMarker extends Component {
       >
         { this.state.showInfoWindow &&
           <InfoWindow>
-            <div className="App-info-window">
+            <div className="map-info-window">
               <span style={{fontWeight:'bold'}}>{`Magnitude ${this.props.magnitude}`}</span><br />
               {this.props.location}<br />
               {`Depth of ${this.props.depth_km} km`}

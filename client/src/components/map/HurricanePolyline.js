@@ -46,7 +46,7 @@ class HurricanePolyline extends Component {
 
         { this.state.showInfoWindow &&
           <InfoWindow position={this.state.posInfoWindow}>
-            <div className="App-info-window">
+            <div className="map-info-window">
               <span style={{fontWeight:'bold'}}>{this.props.name}</span><br />
               {this.props.year}<br />
               {`Category ${this.props.category}`}<br />

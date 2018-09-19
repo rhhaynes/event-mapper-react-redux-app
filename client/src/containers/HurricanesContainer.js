@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ClearMapContainer from './ClearMapContainer';
 import { addHurricanes, removeHurricanes, toggleAllHurricanes, toggleHurricanes } from '../actions/hurricaneActions';
 import HurricanesByYear from '../components/hurricanes/HurricanesByYear';
 import HurricanesByName from '../components/hurricanes/HurricanesByName';
@@ -8,14 +7,17 @@ import HurricanesByName from '../components/hurricanes/HurricanesByName';
 class HurricanesContainer extends Component {
   render() {
     return (
-      <div>
+      <div className="App-dropdown-abs-container">
+
+        <div className="form-title">
+          Geolocation Options
+        </div>
 
         <HurricanesByYear
           checked={this.props.hurricanes.map(obj => Object.keys(obj)[0])}
           addHurricanes={this.props.addHurricanes}
           removeHurricanes={this.props.removeHurricanes}
         />
-        <ClearMapContainer />
 
         <HurricanesByName
           hurricanes={this.props.hurricanes}

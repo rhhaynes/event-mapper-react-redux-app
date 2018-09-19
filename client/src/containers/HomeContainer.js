@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ClearMapContainer from './ClearMapContainer';
 import { fetchLocations, toggleLocations } from '../actions/locationActions';
 import LocationsByName from '../components/locations/LocationsByName';
 
@@ -13,13 +12,16 @@ class HomeContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App-dropdown-abs-container">
+
+        <div className="form-title">
+          Geolocation Options
+        </div>
 
         <LocationsByName
           locations={this.props.locations}
           toggleLocations={this.props.toggleLocations}
         />
-        <ClearMapContainer />
 
       </div>
     );

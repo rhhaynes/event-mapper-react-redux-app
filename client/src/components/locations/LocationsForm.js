@@ -5,6 +5,10 @@ class LocationsForm extends Component {
     return (
       <form onSubmit={event => this.props.handleFormSubmit(event)}>
 
+        <div className="form-title">
+          New Location Marker
+        </div>
+
         <input
           className="locations-form-input"
           type="text"
@@ -12,7 +16,7 @@ class LocationsForm extends Component {
           value={this.props.form.name}
           placeholder="Location Name"
           onChange={event => this.props.handleFormChange(event)}
-        /><br />
+        />
 
         <input
           className="locations-form-input latlng-size"
@@ -30,7 +34,7 @@ class LocationsForm extends Component {
           value={this.props.form.lng}
           placeholder="Longitude"
           onChange={event => this.props.handleFormChange(event)}
-        /><br />
+        />
 
         <textarea
           className="locations-form-input description-size"
@@ -38,11 +42,12 @@ class LocationsForm extends Component {
           value={this.props.form.description}
           placeholder="Description"
           onChange={event => this.props.handleFormChange(event)}
-        /><br />
+        />
 
         <input
           className="locations-form-submit"
           type="submit"
+          value="Create Marker"
         />
 
       </form>

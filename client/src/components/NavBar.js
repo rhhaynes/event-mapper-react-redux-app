@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 class NavBar extends Component {
   render() {
     return (
-      <div className="App-title">
+      <div className="App-header-title">
 
         <NavLink
           exact to="/"

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createLocation } from '../actions/locationActions';
+import ClearMapContainer from './ClearMapContainer';
 import LocationsForm from '../components/locations/LocationsForm';
 import Map from '../components/map/Map';
 
@@ -11,7 +12,7 @@ class MapContainer extends Component {
   }
 
   clearForm() {
-    return { form: { name: '', lat: '', lng: '', description: '' }};
+    this.setState({ form: { name: '', lat: '', lng: '', description: '' }});
   }
 
   handleFormChange(event) {
@@ -30,7 +31,7 @@ class MapContainer extends Component {
         geolocation_attributes: { lat: this.state.form.lat, lng: this.state.form.lng }
       }
     });
-    this.setState( this.clearForm() );
+    this.clearForm();
   }
 
   handleMapClick(event) {
@@ -40,31 +41,34 @@ class MapContainer extends Component {
     this.setState({ form: form });
   }
 
-  handleMarkerClick() {
-    this.setState( this.clearForm() );
-  }
-
   render() {
     return (
-      <div>
+      <div style={{ display:'flex' }}>
 
-        <LocationsForm
-          form={this.state.form}
-          handleFormChange={event => this.handleFormChange(event)}
-          handleFormSubmit={event => this.handleFormSubmit(event)}
-        />
+        <div className="App-float-lt-container">
+          <LocationsForm
+            form={this.state.form}
+            handleFormChange={event => this.handleFormChange(event)}
+            handleFormSubmit={event => this.handleFormSubmit(event)}
+          />
+          <ClearMapContainer
+            clearForm={() => this.clearForm()}
+          />
+        </div>
 
-        <Map
-          containerElement={<div style={{ height: `575px`, width: '1000px' }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-          earthquakes={this.props.earthquakes}
-          hurricanes={this.props.hurricanes}
-          locations={this.props.locations}
-          volcanoes={this.props.volcanoes}
-          form={this.state.form}
-          handleMapClick={event => this.handleMapClick(event)}
-          handleMarkerClick={() => this.handleMarkerClick()}
-        />
+        <div className="App-float-rt-container">
+          <Map
+            containerElement={<div style={{ height: '575px', width: '100%' }} />}
+            mapElement={<div style={{ height: '100%' }} />}
+            earthquakes={this.props.earthquakes}
+            hurricanes={this.props.hurricanes}
+            locations={this.props.locations}
+            volcanoes={this.props.volcanoes}
+            form={this.state.form}
+            handleMapClick={event => this.handleMapClick(event)}
+            handleMarkerClick={() => this.clearForm()}
+          />
+        </div>
 
       </div>
     );

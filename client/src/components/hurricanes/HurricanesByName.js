@@ -10,7 +10,7 @@ class HurricanesByName extends Component {
         let yearStr = Object.keys(obj)[0];
         let hurrArr = obj[yearStr];
         return (
-          <div key={yearStr} className="App-small-left">
+          <div key={yearStr} className="App-content-small">
             <span
               className="toggleAllHurricanes"
               onClick={event => this.props.toggleAllHurricanes(yearStr)}

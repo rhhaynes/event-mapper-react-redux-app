@@ -75,16 +75,12 @@ class EarthquakesByDate extends Component {
     });
 
     return (
-      <div className="App-medium">
-
-        <div className="drop-down closed" style={{textAlign:'left'}}>
-          <div id="selection-button" onClick={() => this.exposeCheckboxes()}>
-            <span>Select earthquakes to view</span>
-            <span className="arrow-container"><i id="arrow" className="down"></i></span>
-          </div>
-          <br /><br />{ queryList }
+      <div className="drop-down closed">
+        <div id="selection-button" onClick={() => this.exposeCheckboxes()}>
+          <span>Select earthquakes to view</span>
+          <span className="arrow-container"><i id="arrow" className="down"></i></span>
         </div>
-
+        <br /><br />{ queryList }
       </div>
     );
   }

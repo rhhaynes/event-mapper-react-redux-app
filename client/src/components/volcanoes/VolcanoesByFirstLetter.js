@@ -44,7 +44,7 @@ class VolcanoesByFirstLetter extends Component {
       let name    = Object.keys(obj)[0];
       let checked = obj[name];
       return (
-        <label key={idx}>
+        <label key={idx} style={{paddingLeft:'50px'}}>
           <input
             type="checkbox"
             name={name}
@@ -57,16 +57,12 @@ class VolcanoesByFirstLetter extends Component {
     });
 
     return (
-      <div className="App-medium">
-
-        <div className="drop-down closed">
-          <div id="selection-button" onClick={() => this.exposeCheckboxes()}>
-            <span>Select volcanoes to view</span>
-            <span className="arrow-container"><i id="arrow" className="down"></i></span>
-          </div>
-          <br /><br />{ charList }
+      <div className="drop-down closed">
+        <div id="selection-button" onClick={() => this.exposeCheckboxes()}>
+          <span>Select volcanoes to view</span>
+          <span className="arrow-container"><i id="arrow" className="down"></i></span>
         </div>
-
+        <br /><br />{ charList }
       </div>
     );
   }

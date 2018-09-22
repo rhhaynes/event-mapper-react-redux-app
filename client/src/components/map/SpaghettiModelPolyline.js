@@ -6,7 +6,7 @@ const SpaghettiModelPolyline = props => (
     geodesic={true}
     path={props.latlng}
     options={{
-      strokeColor: '#AAA',
+      strokeColor: '#777',
       strokeOpacity: 1,
       strokeWeight: 1
     }}

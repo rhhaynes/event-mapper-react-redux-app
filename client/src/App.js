@@ -5,6 +5,7 @@ import EarthquakesContainer from './containers/EarthquakesContainer';
 import HurricanesContainer from './containers/HurricanesContainer';
 import VolcanoesContainer from './containers/VolcanoesContainer';
 import MapContainer from './containers/MapContainer';
+import MapSummary from './containers/MapSummary';
 import NavBar from './components/NavBar';
 import './stylesheets/App.css';
 import './stylesheets/dropdown.css';
@@ -29,6 +30,7 @@ class App extends Component {
               <Route exact path="/hurricanes" component={HurricanesContainer} />
               <Route exact path="/volcanoes" component={VolcanoesContainer} />
               <MapContainer />
+              <MapSummary />
             </div>
           </div>
 

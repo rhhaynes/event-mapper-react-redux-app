@@ -4,7 +4,7 @@ export default (state = [], action) => {
 
     case 'ADD_HURRICANES': {
       return (
-        [...state, action.payload].sort( function(aObj, bObj){
+        [...state, action.payload].sort( (aObj, bObj) => {
           const a = Object.keys(aObj)[0];
           const b = Object.keys(bObj)[0];
           if (a < b){ return -1; }

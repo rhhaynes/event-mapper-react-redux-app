@@ -17,9 +17,9 @@ class LocationMarker extends Component {
         position={this.props.latlng}
         icon={{
           path: 'm -6,0 l 6,6 l 6,-6 l -6,-6 z',
-          fillColor: '#070',
+          fillColor: '#0f0',
           fillOpacity: 1,
-          strokeColor: '#070',
+          strokeColor: '#0f0',
           strokeOpacity: 1
         }}
         onMouseOver={() => this.toggleInfoWindow()}

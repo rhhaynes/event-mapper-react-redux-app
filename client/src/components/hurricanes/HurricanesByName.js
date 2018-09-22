@@ -35,6 +35,7 @@ class HurricanesByName extends Component {
 
     return (
       <div>
+        { !!nameList && <div className="App-summary-subtitle">Hurricanes</div> }
         { nameList }
       </div>
     );

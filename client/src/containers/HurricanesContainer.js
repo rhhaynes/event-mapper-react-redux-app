@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addHurricanes, removeHurricanes, toggleAllHurricanes, toggleHurricanes } from '../actions/hurricaneActions';
+import { addHurricanes, removeHurricanes } from '../actions/hurricaneActions';
 import HurricanesByYear from '../components/hurricanes/HurricanesByYear';
-import HurricanesByName from '../components/hurricanes/HurricanesByName';
 
 class HurricanesContainer extends Component {
   render() {
@@ -19,12 +18,6 @@ class HurricanesContainer extends Component {
           removeHurricanes={this.props.removeHurricanes}
         />
 
-        <HurricanesByName
-          hurricanes={this.props.hurricanes}
-          toggleAllHurricanes={this.props.toggleAllHurricanes}
-          toggleHurricanes={this.props.toggleHurricanes}
-        />
-
       </div>
     );
   }
@@ -32,5 +25,5 @@ class HurricanesContainer extends Component {
 
 export default connect(
   state => ({ hurricanes: state.hurricanes }),
-  { addHurricanes, removeHurricanes, toggleAllHurricanes, toggleHurricanes }
+  { addHurricanes, removeHurricanes }
 )(HurricanesContainer);

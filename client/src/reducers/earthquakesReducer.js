@@ -3,7 +3,15 @@ export default (state = [], action) => {
   switch (action.type) {
 
     case 'ADD_EARTHQUAKES': {
-      return [...state, action.payload];
+      return (
+        [...state, action.payload].sort( (aObj, bObj) => {
+          const a = Object.keys(aObj)[0];
+          const b = Object.keys(bObj)[0];
+          if (a < b){ return -1; }
+          if (a > b){ return  1; }
+          return 0;
+        })
+      );
     }
 
     case 'REMOVE_EARTHQUAKES': {

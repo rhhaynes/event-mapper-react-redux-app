@@ -60,7 +60,7 @@ a.activeRoute:hover {
 .App-content-small {
   font-size: small;
   margin: 0 auto;
-  padding: 0 0 25px;
+  padding: 6px 0 0;
   text-align: left;
 }
 span.toggleAllHurricanes {
@@ -127,6 +127,29 @@ span.toggleAllHurricanes:hover {
   flex-grow: 1;
   margin: 0;
   padding-right: 10px;
+}
+
+.App-summary-container {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.App-summary-title {
+  box-sizing: border-box;
+  font-size: large;
+  font-weight: bold;
+  margin: 25px auto 0;
+  padding: 0;
+}
+
+.App-summary-subtitle {
+  box-sizing: border-box;
+  font-size: medium;
+  font-weight: bold;
+  margin: 25px auto 0;
+  padding: 0;
+  text-align: left;
 }
 
 /* == Miscellaneous ========================================================= */

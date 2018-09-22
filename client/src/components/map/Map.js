@@ -1,5 +1,6 @@
 import React from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { customNight } from './styles/customNight';
 import EarthquakeMarker from './EarthquakeMarker';
 import HurricanePolyline from './HurricanePolyline';
 import LocationMarker from './LocationMarker';
@@ -9,7 +10,7 @@ const Map = withGoogleMap( props => (
   <GoogleMap
     defaultZoom={2}
     defaultCenter={{ lat: 26, lng: 0 }}
-    options={{ minZoom: 2, maxZoom: 20, streetViewControl: false }}
+    options={{ minZoom: 2, maxZoom: 20, streetViewControl: false, styles: customNight }}
     onClick={event => props.handleMapClick(event)}
   >
 

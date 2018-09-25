@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchBox from './SearchBox';
 
 class LocationsForm extends Component {
   render() {
@@ -9,13 +10,12 @@ class LocationsForm extends Component {
           New Location Marker
         </div>
 
-        <input
-          className="locations-form-input"
-          type="text"
-          name="name"
+        <SearchBox
+          containerElement={<div style={{ height: null }} />}
+          mapElement={<div style={{ height: null }} />}
           value={this.props.form.name}
-          placeholder="Location Name"
-          onChange={event => this.props.handleFormChange(event)}
+          handleFormChange={event => this.props.handleFormChange(event)}
+          handlePlacesChanged={places => this.props.handlePlacesChanged(places)}
         />
 
         <input

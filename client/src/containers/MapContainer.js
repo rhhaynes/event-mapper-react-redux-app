@@ -16,9 +16,9 @@ class MapContainer extends Component {
   }
 
   handleFormChange(event) {
-    const form = Object.assign(
-      {}, this.state.form, { [event.target.name]: event.target.value }
-    );
+    const form = Object.assign( {}, this.state.form, {
+      [event.target.name]: event.target.value
+    });
     this.setState({ form: form });
   }
 
@@ -35,9 +35,20 @@ class MapContainer extends Component {
   }
 
   handleMapClick(event) {
-    const form = Object.assign(
-      {}, this.state.form, { lat: event.latLng.lat().toString(10), lng: event.latLng.lng().toString(10) }
-    );
+    const form = Object.assign( {}, this.state.form, {
+      lat: event.latLng.lat().toString(10),
+      lng: event.latLng.lng().toString(10)
+    });
+    this.setState({ form: form });
+  }
+
+  handlePlacesChanged(places) {
+    const form = Object.assign( {}, this.state.form, {
+      name: places[0].name,
+      lat:  places[0].geometry.location.lat().toString(10),
+      lng:  places[0].geometry.location.lng().toString(10),
+      description: places[0].formatted_address
+    });
     this.setState({ form: form });
   }
 
@@ -50,6 +61,7 @@ class MapContainer extends Component {
             form={this.state.form}
             handleFormChange={event => this.handleFormChange(event)}
             handleFormSubmit={event => this.handleFormSubmit(event)}
+            handlePlacesChanged={places => this.handlePlacesChanged(places)}
           />
           <ClearMapContainer
             clearForm={() => this.clearForm()}

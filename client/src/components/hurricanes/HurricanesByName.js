@@ -36,6 +36,19 @@ class HurricanesByName extends Component {
     return (
       <div>
         { !!nameList && <div className="App-summary-subtitle">Hurricanes</div> }
+        { !!nameList &&
+          <div className="App-content-small">
+            <span style={{fontWeight:'bold'}}>Misc:</span>
+            <label>
+              &nbsp;&nbsp;
+              <input
+                type="checkbox"
+                checked={this.props.statusSM}
+                onChange={() => this.props.toggleSpaghettiModels()}
+              />Spaghetti Models
+            </label>
+          </div>
+        }
         { nameList }
       </div>
     );

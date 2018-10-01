@@ -67,7 +67,7 @@ span.toggleAllHurricanes {
   font-weight: bold;
 }
 span.toggleAllHurricanes:hover {
-  color: #2B92FF;
+  color: #2b92ff;
   cursor: pointer;
   text-decoration: none;
 }
@@ -100,6 +100,7 @@ span.toggleAllHurricanes:hover {
   padding: 0;
   height: 100%;
   min-width: 593px;
+  max-width: 100%;
   width: 100%;
 }
 

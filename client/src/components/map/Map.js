@@ -6,8 +6,15 @@ import HurricanePolyline from './HurricanePolyline';
 import LocationMarker from './LocationMarker';
 import VolcanoMarker from './VolcanoMarker';
 
+const zoomToMarker = markerPos => {
+  const zoom = this.map.getZoom();
+  ( zoom<10 ? this.map.setZoom(10) : this.map.setZoom(zoom+1) );
+  this.map.setCenter(markerPos);
+};
+
 const Map = withGoogleMap( props => (
   <GoogleMap
+    ref={ref => this.map = (!ref ? ref : ref.context.__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED)}
     defaultZoom={2}
     defaultCenter={{ lat: 26, lng: 0 }}
     options={{ minZoom: 2, maxZoom: 20, streetViewControl: false, styles: customNight }}
@@ -37,6 +44,7 @@ const Map = withGoogleMap( props => (
                 magnitude={eq[idStr].magnitude}
                 latlng={eq[idStr].latlng}
                 depth_km={eq[idStr].depth_km}
+                zoomToMarker={zoomToMarker}
               />
             );
           })
@@ -57,7 +65,7 @@ const Map = withGoogleMap( props => (
             let category = hurr[nameStr].category;
             let deaths = hurr[nameStr].deaths;
             let latlng = (status ? hurr[nameStr].latlng : []);
-            let spaghettiModels = (status ? hurr[nameStr].spaghettiModels : []);
+            let spaghettiModels = (status && props.statusSM ? hurr[nameStr].spaghettiModels : []);
             return (
               <HurricanePolyline
                 key={'polyHurricane-'+yearStr+nameStr}
@@ -86,6 +94,7 @@ const Map = withGoogleMap( props => (
             name={obj.name}
             description={obj.description}
             latlng={obj.latlng}
+            zoomToMarker={zoomToMarker}
           />
       ))
     }
@@ -107,6 +116,7 @@ const Map = withGoogleMap( props => (
                 type={vol[nameStr].type}
                 latlng={vol[nameStr].latlng}
                 elev_m={vol[nameStr].elev_m}
+                zoomToMarker={zoomToMarker}
               />
             );
           })

@@ -72,6 +72,7 @@ class MapContainer extends Component {
           <Map
             containerElement={<div style={{ height: '575px', width: '100%' }} />}
             mapElement={<div style={{ height: '100%' }} />}
+            statusSM={this.props.mapOptions.status.spaghettiModels}
             earthquakes={this.props.earthquakes}
             hurricanes={this.props.hurricanes}
             locations={this.props.locations}
@@ -89,6 +90,7 @@ class MapContainer extends Component {
 
 export default connect(
   state => ({
+    mapOptions: state.mapOptions,
     earthquakes: state.earthquakes,
     hurricanes: state.hurricanes,
     locations: state.locations,

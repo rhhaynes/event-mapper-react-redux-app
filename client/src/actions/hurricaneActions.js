@@ -7,7 +7,7 @@ export function addHurricanes(yearStr) {
       const hurricanes = {
         [yearStr]: respJson.map( feature => ({
           [feature.name]: {
-            status: feature.status,
+            status: true,
             category: feature.category,
             deaths: feature.deaths,
             latlng: feature.geolocations,

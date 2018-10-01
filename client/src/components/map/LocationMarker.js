@@ -22,6 +22,7 @@ class LocationMarker extends Component {
           strokeColor: '#0f0',
           strokeOpacity: 1
         }}
+        onClick={() => this.props.zoomToMarker(this.props.latlng)}
         onMouseOver={() => this.toggleInfoWindow()}
         onMouseOut={() => this.toggleInfoWindow()}
       >

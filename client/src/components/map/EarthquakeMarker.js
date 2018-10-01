@@ -22,6 +22,7 @@ class EarthquakeMarker extends Component {
           strokeColor: '#00f',
           strokeOpacity: 1
         }}
+        onClick={() => this.props.zoomToMarker(this.props.latlng)}
         onMouseOver={() => this.toggleInfoWindow()}
         onMouseOut={() => this.toggleInfoWindow()}
       >

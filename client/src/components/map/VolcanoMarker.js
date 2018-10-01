@@ -22,6 +22,7 @@ class VolcanoMarker extends Component {
           strokeColor: '#f00',
           strokeOpacity: 1
         }}
+        onClick={() => this.props.zoomToMarker(this.props.latlng)}
         onMouseOver={() => this.toggleInfoWindow()}
         onMouseOut={() => this.toggleInfoWindow()}
       >

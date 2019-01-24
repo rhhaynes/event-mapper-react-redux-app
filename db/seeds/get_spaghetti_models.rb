@@ -5,15 +5,15 @@ require 'zip'
 
 # == Specify Input Parameters ================================================ #
 
-strm_year = "2018"
+strm_year = Time.now.year.to_s
 
 file_path = Dir.pwd
-temp_path = file_path + "/tmp/"; Dir.mkdir(temp_path) unless Dir.exists?(temp_path)
-shp_path  = temp_path +  "shp/"; Dir.mkdir( shp_path) unless Dir.exists?( shp_path)
-geo_path  = temp_path +  "geo/"; Dir.mkdir( geo_path) unless Dir.exists?( geo_path)
+temp_path = File.join(file_path,'tmp'); Dir.mkdir(temp_path) unless Dir.exists?(temp_path)
+shp_path  = File.join(temp_path,'shp'); Dir.mkdir( shp_path) unless Dir.exists?( shp_path)
+geo_path  = File.join(temp_path,'geo'); Dir.mkdir( geo_path) unless Dir.exists?( geo_path)
 
-save_path = file_path + "/spaghetti_models/"
-data_file = save_path + "spaghetti_models_#{strm_year}.rb"
+save_path = File.join(file_path,'spaghetti_models')
+data_file = File.join(save_path,"spaghetti_models_#{strm_year}.rb")
 Dir.mkdir(save_path) unless Dir.exists?(save_path)
 
 # == Scrape Archived Hurricane Data ========================================== #
@@ -45,11 +45,11 @@ if !File.file?(data_file)
     archive_atl.each do |h|
       h[:zipfiles].each do |url|
         Zip::File.open_buffer(open(url)) do |zipfile|
-          zipfile.glob('*_pts.*').each{|file| zipfile.extract(file, shp_path + file.name)}
+          zipfile.glob('*_pts.*').each{|file| zipfile.extract(file, File.join(shp_path,file.name))}
           if !zipfile.glob('*_pts.shp').empty?
             zipname = zipfile.glob('*_pts.shp').first.name.split('.')[0..-2].join('.')
-            shpfile = shp_path + zipname + ".shp"
-            geofile = geo_path + zipname + ".geojson"
+            shpfile = File.join(shp_path, zipname + '.shp')
+            geofile = File.join(geo_path, zipname + '.geojson')
             %x[ ogr2ogr -f GeoJSON -t_srs EPSG:4326 #{geofile} #{shpfile} ]
             # compile geolocation data for hurricane spaghetti models
             h[:geolocations][zipname] = JSON.parse(File.read(geofile))['features'].collect do |pt|

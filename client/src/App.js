@@ -37,7 +37,7 @@ class App extends Component {
           <footer className="App-footer">
             <div className="App-container">
               <div className="App-footer-small">
-                &copy; 2018 EventMapper
+                &copy; {new Date().getFullYear()} EventMapper
               </div>
             </div>
           </footer>

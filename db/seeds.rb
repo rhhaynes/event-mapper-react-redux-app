@@ -2,27 +2,30 @@
 
 if Hurricane.all.empty?
   puts "== seeds.rb Hurricane: seeding ".ljust(79, "=")
-  puts "-- create hurricanes (1995-2018)"
+  puts "-- create hurricanes (1980-2018)"
   t_start = Time.now
 
-	[*1995..2018].each do |year|
-		print "\r   -> %d" % year
-		require_relative "./seeds/hurricanes/hurricanes#{year}.rb"
+	[*1980..2018].each do |year|
+    ['al','ep'].each do |region|
+      print "\r   -> %d (%s)" % [year, region]
+      require_relative "./seeds/hurricanes/#{region}/hurricanes_#{region}_#{year}.rb"
 
-		Object.const_get("Hurricanes#{year}").hurricanes.each do |hurricane|
-			name = hurricane.keys.first
+  		Object.const_get("Hurricanes#{region.upcase}#{year}").hurricanes.each do |hurricane|
+  			name = hurricane.keys.first
 
-			Hurricane.create(
-				:year     => year.to_s,
-				:name     => name.to_s,
-				:status   => hurricane[name][:status],
-				:category => hurricane[name][:category],
-				:deaths   => hurricane[name][:deaths]
-			).geolocations.create(
-				hurricane[name][:latlng]
-			)
-		end
-	end
+  			Hurricane.create(
+  				:year     => year.to_s,
+  				:name     => name.to_s,
+          :region   => region,
+  				:status   => hurricane[name][:status],
+  				:category => hurricane[name][:category],
+  				:deaths   => hurricane[name][:deaths]
+  			).geolocations.create(
+  				hurricane[name][:latlng]
+  			)
+  		end
+  	end
+  end
 
 	puts "\r   -> %.4fs" % (Time.now - t_start)
   puts "== seeds.rb Hurricane: seeded #{"(%.4fs)" % (Time.now - t_start)} ".ljust(79, "=")

@@ -38,7 +38,7 @@ class HurricanePolyline extends Component {
           options={{
             strokeColor: PolylineColors[this.props.index],
             strokeOpacity: 1,
-            strokeWeight: 3,
+            strokeWeight: 2,
             zIndex: 1000
           }}
           onMouseOver={event => this.toggleInfoWindow(event)}

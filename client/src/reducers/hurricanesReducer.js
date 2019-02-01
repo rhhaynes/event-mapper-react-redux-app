@@ -1,69 +1,41 @@
-export default (state = [], action) => {
+export default (state = {}, action) => {
 
   switch (action.type) {
 
     case 'ADD_HURRICANES': {
-      return (
-        [...state, action.payload].sort( (aObj, bObj) => {
-          const a = Object.keys(aObj)[0];
-          const b = Object.keys(bObj)[0];
-          if (a < b){ return -1; }
-          if (a > b){ return  1; }
-          return 0;
-        })
-      );
+      return {...state, ...action.payload};
     }
 
     case 'REMOVE_HURRICANES': {
-      const idx = state.findIndex(obj => Object.keys(obj)[0] === action.year);
-      return [...state.slice(0, idx), ...state.slice(idx+1)];
+      delete state[action.year];
+      return {...state};
     }
 
-    case 'TOGGLE_ALL_HURRICANES': {
-      const idxYear = state.findIndex(obj => Object.keys(obj)[0] === action.year);
-      const status = !state[idxYear][action.year][0][Object.keys(state[idxYear][action.year][0])[0]].status;
-      return [
-        ...state.slice(0, idxYear),
-        {
-          [action.year] : state[idxYear][action.year].map( (obj, idxName) => {
-            const hurrName = Object.keys(obj)[0];
-            return {
-              [hurrName] : {
-                status: status,
-                category: state[idxYear][action.year][idxName][hurrName].category,
-                deaths: state[idxYear][action.year][idxName][hurrName].deaths,
-                latlng: state[idxYear][action.year][idxName][hurrName].latlng,
-                spaghettiModels: state[idxYear][action.year][idxName][hurrName].spaghettiModels
-              }
-            };
-          })
-        },
-        ...state.slice(idxYear+1)];
+    case 'TOGGLE_HURRICANES_BY_YEAR': {
+      const status = !state[action.year]['al'][Object.keys(state[action.year]['al'])[0]].status;
+      Object.keys(state[action.year]).forEach( region => (
+        Object.keys(state[action.year][region]).forEach( hurrName => (
+          state[action.year][region][hurrName].status = status
+        ))
+      ));
+      return {...state};
     }
 
-    case 'TOGGLE_HURRICANES': {
-      const idxYear = state.findIndex(obj => Object.keys(obj)[0] === action.year);
-      const idxName = state[idxYear][action.year].findIndex(obj => Object.keys(obj)[0] === action.name);
-      return [
-        ...state.slice(0, idxYear),
-          {
-            [action.year] : [
-              ...state[idxYear][action.year].slice(0, idxName),
-                {
-                  [action.name] : {
-                    status: !state[idxYear][action.year][idxName][action.name].status,
-                    category: state[idxYear][action.year][idxName][action.name].category,
-                    deaths: state[idxYear][action.year][idxName][action.name].deaths,
-                    latlng: state[idxYear][action.year][idxName][action.name].latlng,
-                    spaghettiModels: state[idxYear][action.year][idxName][action.name].spaghettiModels}
-                },
-              ...state[idxYear][action.year].slice(idxName+1)]
-          },
-        ...state.slice(idxYear+1)];
+    case 'TOGGLE_HURRICANES_BY_REGION': {
+      const status = !state[action.year][action.region][Object.keys(state[action.year][action.region])[0]].status;
+      Object.keys(state[action.year][action.region]).forEach( hurrName => (
+        state[action.year][action.region][hurrName].status = status
+      ));
+      return {...state};
+    }
+
+    case 'TOGGLE_HURRICANES_BY_NAME': {
+      state[action.year][action.region][action.name].status = !state[action.year][action.region][action.name].status;
+      return {...state};
     }
 
     case 'RESET': {
-      return [];
+      return {};
     }
 
     default: {

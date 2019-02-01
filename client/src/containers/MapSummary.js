@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleAllHurricanes, toggleHurricanes } from '../actions/hurricaneActions';
+import { toggleHurricanesByYear, toggleHurricanesByRegion, toggleHurricanesByName } from '../actions/hurricaneActions';
 import { toggleSpaghettiModels } from '../actions/mapActions';
 import EarthquakesMapSummary from '../components/earthquakes/EarthquakesMapSummary';
 import HurricanesByName from '../components/hurricanes/HurricanesByName';
@@ -22,8 +22,9 @@ class MapSummary extends Component {
         <HurricanesByName
           statusSM={this.props.mapOptions.status.spaghettiModels}
           hurricanes={this.props.hurricanes}
-          toggleAllHurricanes={this.props.toggleAllHurricanes}
-          toggleHurricanes={this.props.toggleHurricanes}
+          toggleHurricanesByYear={this.props.toggleHurricanesByYear}
+          toggleHurricanesByRegion={this.props.toggleHurricanesByRegion}
+          toggleHurricanesByName={this.props.toggleHurricanesByName}
           toggleSpaghettiModels={this.props.toggleSpaghettiModels}
         />
 
@@ -43,5 +44,5 @@ export default connect(
     hurricanes: state.hurricanes,
     volcanoes: state.volcanoes
   }),
-  { toggleAllHurricanes, toggleHurricanes, toggleSpaghettiModels }
+  { toggleHurricanesByYear, toggleHurricanesByRegion, toggleHurricanesByName, toggleSpaghettiModels }
 )(MapSummary);

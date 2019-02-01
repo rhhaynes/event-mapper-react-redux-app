@@ -4,33 +4,34 @@ import Hurricane from './Hurricane';
 class HurricanesByName extends Component {
   render() {
     const nameList = (
-      ( !Array.isArray(this.props.hurricanes) || !this.props.hurricanes.length )
+      ( !Array.isArray(Object.keys(this.props.hurricanes)) || !Object.keys(this.props.hurricanes).length )
       ? null
-      : this.props.hurricanes.map( obj => {
-        let yearStr = Object.keys(obj)[0];
-        let hurrArr = obj[yearStr];
-        return (
+      : Object.keys(this.props.hurricanes).map( yearStr => (
           <div key={yearStr} className="App-content-small">
             <span
-              className="toggleAllHurricanes"
-              onClick={event => this.props.toggleAllHurricanes(yearStr)}
-            >{ yearStr }:</span>
-            { hurrArr.map( hurr => {
-              let nameStr = Object.keys(hurr)[0];
-              let checked = hurr[nameStr].status;
-              return (
-                <Hurricane
-                  key={yearStr+nameStr}
-                  year={yearStr}
-                  name={nameStr}
-                  checked={checked}
-                  toggleHurricanes={this.props.toggleHurricanes}
-                />
-              );
-            })}
+              className="toggleHurricanes" style={{textDecoration:'underline'}}
+              onClick={event => this.props.toggleHurricanesByYear(yearStr)}
+            >{ yearStr }</span>
+            { Object.keys(this.props.hurricanes[yearStr]).map( regionStr => (
+              <div key={regionStr+yearStr} className="App-content-small">
+                <span
+                  className="toggleHurricanes"
+                  onClick={event => this.props.toggleHurricanesByRegion(yearStr, regionStr)}
+                >{ regionStr.toUpperCase() }:</span>
+                { Object.keys(this.props.hurricanes[yearStr][regionStr]).map( nameStr => (
+                  <Hurricane
+                    key={regionStr+yearStr+nameStr}
+                    year={yearStr}
+                    region={regionStr}
+                    name={nameStr}
+                    checked={this.props.hurricanes[yearStr][regionStr][nameStr].status}
+                    toggleHurricanesByName={this.props.toggleHurricanesByName}
+                  />
+                ))}
+              </div>
+            ))}
           </div>
-        );
-      })
+        ))
     );
 
     return (
@@ -38,10 +39,9 @@ class HurricanesByName extends Component {
         { !!nameList && <div className="App-summary-subtitle">Hurricanes</div> }
         { !!nameList &&
           <div className="App-content-small">
-            <span style={{fontWeight:'bold'}}>Misc:</span>
             <label>
-              &nbsp;&nbsp;
               <input
+                style={{marginLeft:0}}
                 type="checkbox"
                 checked={this.props.statusSM}
                 onChange={() => this.props.toggleSpaghettiModels()}

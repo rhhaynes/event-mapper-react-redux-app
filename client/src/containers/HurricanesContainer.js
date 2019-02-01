@@ -13,7 +13,7 @@ class HurricanesContainer extends Component {
         </div>
 
         <HurricanesByYear
-          checked={this.props.hurricanes.map(obj => Object.keys(obj)[0])}
+          checked={Object.keys(this.props.hurricanes)}
           addHurricanes={this.props.addHurricanes}
           removeHurricanes={this.props.removeHurricanes}
         />

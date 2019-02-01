@@ -53,34 +53,27 @@ const Map = withGoogleMap( props => (
     }
 
     {
-      ( !Array.isArray(props.hurricanes) || !props.hurricanes.length )
+      ( !Array.isArray(Object.keys(props.hurricanes)) || !Object.keys(props.hurricanes).length )
       ? null
-      : props.hurricanes.map( obj => {
-        let yearStr = Object.keys(obj)[0];
-        let hurrArr = obj[yearStr];
-        return (
-          hurrArr.map( (hurr, idx) => {
-            let nameStr = Object.keys(hurr)[0];
-            let status = hurr[nameStr].status;
-            let category = hurr[nameStr].category;
-            let deaths = hurr[nameStr].deaths;
-            let latlng = (status ? hurr[nameStr].latlng : []);
-            let spaghettiModels = (status && props.statusSM ? hurr[nameStr].spaghettiModels : []);
-            return (
-              <HurricanePolyline
-                key={'polyHurricane-'+yearStr+nameStr}
-                year={yearStr}
-                name={nameStr}
-                category={category}
-                deaths={deaths}
-                latlng={latlng}
-                spaghettiModels={spaghettiModels}
-                index={idx}
-              />
-            );
-          })
-        );
-      })
+      : Object.keys(props.hurricanes).map( yearStr => (
+          Object.keys(props.hurricanes[yearStr]).map( regionStr => (
+            Object.keys(props.hurricanes[yearStr][regionStr]).map( (nameStr, idx) => {
+              let hurricane = props.hurricanes[yearStr][regionStr][nameStr];
+              return (
+                <HurricanePolyline
+                  key={'polyHurricane-'+regionStr+yearStr+nameStr}
+                  year={yearStr}
+                  name={nameStr}
+                  category={hurricane.category}
+                  deaths={hurricane.deaths}
+                  latlng={hurricane.status ? hurricane.latlng : []}
+                  spaghettiModels={hurricane.status && props.statusSM ? hurricane.spaghettiModels : []}
+                  index={idx}
+                />
+              );
+            })
+          ))
+        ))
     }
 
     {

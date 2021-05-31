@@ -17,7 +17,7 @@ class HurricanesByName extends Component {
                 <span
                   className="toggleHurricanes"
                   onClick={event => this.props.toggleHurricanesByRegion(yearStr, regionStr)}
-                >{ regionStr.toUpperCase() }:</span>
+                >{ regionStr.toUpperCase() } ({ Object.keys(this.props.hurricanes[yearStr][regionStr]).length }):</span>
                 { Object.keys(this.props.hurricanes[yearStr][regionStr]).map( nameStr => (
                   <Hurricane
                     key={regionStr+yearStr+nameStr}

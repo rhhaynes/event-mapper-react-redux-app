@@ -10,7 +10,7 @@ class VolcanoesMapSummary extends Component {
         let volArr = obj[charStr];
         return (
           <div key={charStr} className="App-content-small">
-            <span style={{fontWeight:'bold'}}>{ charStr }:&nbsp;&nbsp;</span>
+            <span style={{fontWeight:'bold'}}>{ charStr } ({ volArr.length }):&nbsp;&nbsp;</span>
             { volArr.map(vol => Object.keys(vol)[0]).join('; ')}
           </div>
         );

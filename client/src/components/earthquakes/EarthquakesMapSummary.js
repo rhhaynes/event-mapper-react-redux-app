@@ -10,7 +10,7 @@ class EarthquakesMapSummary extends Component {
         let eqArr = obj[queryStr];
         return (
           <div key={queryStr} className="App-content-small">
-            <span style={{fontWeight:'bold'}}>{ queryStr }:&nbsp;&nbsp;</span>
+            <span style={{fontWeight:'bold'}}>{ queryStr } ({ eqArr.length }):&nbsp;&nbsp;</span>
             { eqArr.map(eq => Object.keys(eq)[0]).join(', ')}
           </div>
         );

@@ -52,6 +52,11 @@
   margin-bottom: 3px;
   padding-left: 4px;
 }
+.locations-form-input::placeholder {
+  color: #aaa;
+  font-family: sans-serif;
+  opacity: 1;
+}
 .locations-form-input.latlng-size {
   width: 164px;
 }

@@ -9,7 +9,7 @@
 /* == App Header ============================================================ */
 
 .App-header {
-  background-color: #222;
+  background-color: #000;
   box-sizing: border-box;
   color: #fff;
   display: block;
@@ -46,9 +46,7 @@ a.activeRoute:hover {
 /* == App Content =========================================================== */
 
 .App-content {
-  background-color: #fff;
   box-sizing: border-box;
-  color: #222;
   display: block;
   margin: 0;
   padding: 25px 0;
@@ -76,7 +74,6 @@ span.toggleHurricanes:hover {
 
 .App-footer {
   box-sizing: border-box;
-  color: #222;
   display: block;
   margin: 0;
   padding: 0;
@@ -86,6 +83,7 @@ span.toggleHurricanes:hover {
 }
 
 .App-footer-small {
+  border-top: 1px solid #555;
   font-size: small;
   margin: 0 auto;
   padding: 25px 0;
@@ -114,7 +112,6 @@ span.toggleHurricanes:hover {
 
 .App-float-lt-container {
   box-sizing: border-box;
-  color: #222;
   float: left;
   margin: 0;
   padding: 0;
@@ -125,7 +122,6 @@ span.toggleHurricanes:hover {
 
 .App-float-rt-container {
   box-sizing: border-box;
-  color: #222;
   flex-grow: 1;
   margin: 0;
   padding-right: 10px;

@@ -3,9 +3,9 @@ div.drop-down {
   border-radius: 3.5px;
   box-shadow: 0 0 1px #bbb;
   font-size: medium;
-  height: 261px;
   margin: 0 auto;
-  padding: 0;
+  max-height: 256px;
+  padding: 0 0 5px 0;
   overflow: auto;
   text-align: left;
   width: 333px;
@@ -14,7 +14,7 @@ div.drop-down {
 }
 div.drop-down.closed {
   border-bottom: none;
-  height: 30px;
+  height: 25px;
   overflow: hidden;
 }
 
@@ -22,6 +22,7 @@ div#selection-button {
   background-color: #fff;
   border-bottom: 1px solid #777;
   border-radius: 3.5px;
+  color: #353535;
   margin: 0 auto;
   padding: 6px;
   position: absolute;
@@ -39,7 +40,7 @@ span.arrow-container {
   padding: 0;
 }
 i#arrow {
-  border: solid black;
+  border: solid #353535;
   border-width: 0 3px 3px 0;
   display: inline-block;
   margin: 0 auto;
